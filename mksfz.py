@@ -6,6 +6,21 @@ import sys
 next_cc = 102 # next available CC number
 instrument_first_cc = {} # dict on abbr of first cc# for controls
 
+header = '''# Fischer TR-808 SFZ mapping
+#
+# author: "Michael Fischer"
+# license: "CC0"
+# original source_url: "https://github.com/tidalcycles/sounds-tr808-fischer"
+# current (temporary) source_url: "https://github.com/jlearman/sounds-tr808-fischer"
+# size: "12MB"
+
+# Keyswitches:
+#  A0 = crossfades for decay/snappy control, uses two voices per note,
+#       for bass drum, snare drum, and cymbal only
+#  Bb = no control crossfades - uses one voice per note
+'''
+
+
 # tuple per level range, of (name, lo CC, hi CC)
 level_ranges = {
       0: ("00", 0,                      int(1.0 * 0.125 * 128)-1)
@@ -14,6 +29,15 @@ level_ranges = {
     , 3: ("75", int(5.0 * 0.125 * 128), int(7.0 * 0.125 * 128)-1)
     , 4: ("10", int(7.0 * 0.125 * 128), 127)
 }
+
+def level_midpoint(ix:int):
+    match ix:
+        case 0:
+            return 0
+        case 4:
+            return 127
+        case _:
+            return (level_ranges[ix][1] + level_ranges[ix][2]) // 2
 
 class Control(enum.Enum):
     TONE = "tone"
@@ -49,14 +73,14 @@ class Instrument(object):
             n += lev
         return n + ".WAV"
 
-    def render_region(self, ctrl_indexes:list[int]):
+    def render_region(self, ctrl_level_indexes:list[int], keyswitch=False):
         print(f"<region> key={self.note:3} loop_mode=one_shot", end="")
-        match len(ctrl_indexes):
+        match len(ctrl_level_indexes):
             case 0:
-                print(f" sample={self.sample_fname(())}", end="")
+                print(f" sample={self.sample_fname(()):14}", end="")
             case 1:
                 c1_cc = instrument_first_cc[self.abbr]
-                c1_ix = ctrl_indexes[0]
+                c1_ix = ctrl_level_indexes[0]
                 c1_id = level_ranges[c1_ix][0]
                 c1_lo = level_ranges[c1_ix][1]
                 c1_hi = level_ranges[c1_ix][2]
@@ -64,25 +88,57 @@ class Instrument(object):
                 print(f" locc{c1_cc}={c1_lo:03} hicc{c1_cc}={c1_hi:03}", end="")
             case 2:
                 c1_cc = instrument_first_cc[self.abbr]
-                c1_ix = ctrl_indexes[0]
+                c1_ix = ctrl_level_indexes[0]
                 c1_id = level_ranges[c1_ix][0]
                 c1_lo = level_ranges[c1_ix][1]
                 c1_hi = level_ranges[c1_ix][2]
                 c1_cc = instrument_first_cc[self.abbr]
-                c2_ix = ctrl_indexes[1]
+                c2_ix = ctrl_level_indexes[1]
                 c2_id = level_ranges[c2_ix][0]
                 c2_lo = level_ranges[c2_ix][1]
                 c2_hi = level_ranges[c2_ix][2]
                 c2_cc = c1_cc + 1
                 print(f" sample={self.sample_fname((c1_id,c2_id)):14}", end="")
                 print(f" locc{c1_cc}={c1_lo:03} hicc{c1_cc}={c1_hi:03}", end="")
-                print(f" locc{c2_cc}={c2_lo:03} hicc{c2_cc}={c2_hi:03}", end="")
+
+                # Only dual-control instruments have tone keyswitch, and tone is always 1st control
+                if keyswitch:
+                    match c2_ix:
+                        case 0: # bottom special case
+                            c2_lo       = 0
+                            c2_xfout_lo = 0
+                            c2_hi       = level_midpoint(c2_ix+1)
+                            print(f" locc{c2_cc}={c2_lo:03}", end="")
+                            print(f" xfout_locc{c2_cc:3}={c2_xfout_lo:03} xfout_hicc{c2_cc:3}={c2_hi:03}", end="")
+                            print(f" hicc{c2_cc:03}={c2_hi:03}", end="")
+                        case 4: # top special case
+                            c2_lo       = level_midpoint(c2_ix-1)
+                            c2_xfin_lo  = c2_lo
+                            c2_xfin_hi  = level_midpoint(c2_ix)
+                            c2_xfout_lo = c2_xfin_hi
+                            c2_xfout_hi = 127
+                            c2_hi       = 127
+                            print(f" locc{c2_cc}={c2_lo:03}", end="")
+                            print(f" xfin_locc{c2_cc:3}={c2_lo:03} xfin_hicc{c2_cc:3}={c2_hi:03}", end="")
+                            print(f" hicc{c2_cc:03}={c2_hi:03}", end="")
+                        case _: # middle cases
+                            c2_lo       = level_midpoint(c2_ix-1)
+                            c2_xfin_lo  = c2_lo
+                            c2_xfin_hi  = level_midpoint(c2_ix)
+                            c2_xfout_lo = c2_xfin_hi
+                            c2_xfout_hi = level_midpoint(c2_ix+1)
+                            print(f" locc{c2_cc}={c2_lo:03}", end="")
+                            print(f" xfin_locc{c2_cc:3}={c2_lo:03} xfin_hicc{c2_cc:3}={c2_hi:03}", end="")
+                            print(f" xfout_locc{c2_cc:3}={c2_xfout_lo:03} xfout_hicc{c2_cc:3}={c2_hi:03}", end="")
+                            print(f" hicc{c2_cc:03}={c2_hi:03}", end="")
+                else:
+                    print(f" locc{c2_cc}={c2_lo:03} hicc{c2_cc}={c2_hi:03}", end="")
 
         if self.group:
             print(f" group={self.group} off_by={self.group}", end="")
         print()
 
-    def render_sfz(self):
+    def render_sfz(self, keyswitch=False):
         match len(self.controls):
             case 0:
                 self.render_region(())
@@ -92,7 +148,8 @@ class Instrument(object):
             case 2:
                 for lev1 in level_ranges.keys():
                     for lev2 in level_ranges.keys():
-                        self.render_region((lev1, lev2))
+                        # only dual-control instruments have tone controls
+                        self.render_region((lev1, lev2), keyswitch)
 
     def render_control_labels(self):
         cc = instrument_first_cc[self.abbr]
@@ -132,15 +189,27 @@ instruments = (
 )
 
 def main():
+    print(header)
+
+    print("# Instrument note assignments (close to GM drum mapping)")
     for inst in instruments:
         inst.render_comments()
 
+    print()
     print("<control>")
     for inst in instruments:
         txt = inst.render_control_labels()
+    print()
+    print("<master> sw_lokey=A0 sw_hikey=Bb0 sw_default=A0")
 
-    print("<master>")
+    print()
+    print("<group> sw_last=A0")
     for inst in instruments:
-        txt = inst.render_sfz()
+        txt = inst.render_sfz(keyswitch=True)
+
+    print()
+    print("<group> sw_last=Bb0")
+    for inst in instruments:
+        txt = inst.render_sfz(keyswitch=False)
 
 main()

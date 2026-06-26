@@ -1,0 +1,284 @@
+
+controllers:
+ Global:
+  volume:
+   midi_cc: 7
+   value: 127
+   name: "Volume"
+  pan:
+   midi_cc: 10
+   value: 64
+   name: "Pan"
+  expression:
+   midi_cc: 11
+   value: 127
+   name: "Expression"
+
+  crossfade:
+   graph_path: 'note_on'
+   labels: ['OFF', 'ON']
+   ticks: [22, 21]
+   name: "Cross-Fade Samples"
+
+ BassDrum:
+  bd_level:
+    midi_cc: 75
+    name: BassDrum Level
+    value: 64
+  bd_pan:
+    midi_cc: 76
+    name: BassDrum Pan
+    value: 64
+  bd_tone:
+    midi_cc: 77
+    name: BassDrum Tone
+    value: 64
+  bd_decay:
+    midi_cc: 78
+    name: BassDrum Decay
+    value: 64
+
+ Rimshot:
+  rs_level:
+    midi_cc: 79
+    name: Rimshot Level
+    value: 64
+  rs_pan:
+    midi_cc: 80
+    name: Rimshot Pan
+    value: 64
+
+ SnareDrum:
+  sd_level:
+    midi_cc: 81
+    name: SnareDrum Level
+    value: 64
+  sd_pan:
+    midi_cc: 82
+    name: SnareDrum Pan
+    value: 64
+  sd_tone:
+    midi_cc: 83
+    name: SnareDrum Tone
+    value: 64
+  sd_snappy:
+    midi_cc: 84
+    name: SnareDrum Snappy
+    value: 64
+
+ HandClap:
+  cp_level:
+    midi_cc: 85
+    name: HandClap Level
+    value: 64
+  cp_pan:
+    midi_cc: 86
+    name: HandClap Pan
+    value: 64
+
+ LowTom:
+  lt_level:
+    midi_cc: 87
+    name: LowTom Level
+    value: 64
+  lt_pan:
+    midi_cc: 88
+    name: LowTom Pan
+    value: 64
+  lt_tuning:
+    midi_cc: 89
+    name: LowTom Tuning
+    value: 64
+
+ Closed HiHat:
+  ch_level:
+    midi_cc: 90
+    name: Closed HiHat Level
+    value: 64
+  ch_pan:
+    midi_cc: 91
+    name: Closed HiHat Pan
+    value: 64
+
+ Open HiHat:
+  oh_level:
+    midi_cc: 92
+    name: Open HiHat Level
+    value: 64
+  oh_pan:
+    midi_cc: 93
+    name: Open HiHat Pan
+    value: 64
+  oh_decay:
+    midi_cc: 94
+    name: Open HiHat Decay
+    value: 64
+
+ MidTom:
+  mt_level:
+    midi_cc: 95
+    name: MidTom Level
+    value: 64
+  mt_pan:
+    midi_cc: 96
+    name: MidTom Pan
+    value: 64
+  mt_tuning:
+    midi_cc: 97
+    name: MidTom Tuning
+    value: 64
+
+ HiTom:
+  ht_level:
+    midi_cc: 98
+    name: HiTom Level
+    value: 64
+  ht_pan:
+    midi_cc: 99
+    name: HiTom Pan
+    value: 64
+  ht_tuning:
+    midi_cc: 100
+    name: HiTom Tuning
+    value: 64
+
+ Cymbal:
+  cy_level:
+    midi_cc: 101
+    name: Cymbal Level
+    value: 64
+  cy_pan:
+    midi_cc: 102
+    name: Cymbal Pan
+    value: 64
+  cy_tone:
+    midi_cc: 103
+    name: Cymbal Tone
+    value: 64
+  cy_decay:
+    midi_cc: 104
+    name: Cymbal Decay
+    value: 64
+
+ CowBell:
+  cb_level:
+    midi_cc: 105
+    name: CowBell Level
+    value: 64
+  cb_pan:
+    midi_cc: 106
+    name: CowBell Pan
+    value: 64
+
+ LowConga:
+  lc_level:
+    midi_cc: 107
+    name: LowConga Level
+    value: 64
+  lc_pan:
+    midi_cc: 108
+    name: LowConga Pan
+    value: 64
+  lc_tuning:
+    midi_cc: 109
+    name: LowConga Tuning
+    value: 64
+
+ MidConga:
+  mc_level:
+    midi_cc: 110
+    name: MidConga Level
+    value: 64
+  mc_pan:
+    midi_cc: 111
+    name: MidConga Pan
+    value: 64
+  mc_tuning:
+    midi_cc: 112
+    name: MidConga Tuning
+    value: 64
+
+ HiConga:
+  hc_level:
+    midi_cc: 113
+    name: HiConga Level
+    value: 64
+  hc_pan:
+    midi_cc: 114
+    name: HiConga Pan
+    value: 64
+  hc_tuning:
+    midi_cc: 115
+    name: HiConga Tuning
+    value: 64
+
+ Maracas:
+  ma_level:
+    midi_cc: 116
+    name: Maracas Level
+    value: 64
+  ma_pan:
+    midi_cc: 117
+    name: Maracas Pan
+    value: 64
+
+ Clave:
+  cl_level:
+    midi_cc: 118
+    name: Clave Level
+    value: 64
+  cl_pan:
+    midi_cc: 119
+    name: Clave Pan
+    value: 64
+
+
+keymap:
+ - note: 36
+   name: BassDrum
+   colour: white
+ - note: 37
+   name: Rimshot
+   colour: white
+ - note: 38
+   name: SnareDrum
+   colour: white
+ - note: 39
+   name: HandClap
+   colour: white
+ - note: 41
+   name: LowTom
+   colour: white
+ - note: 42
+   name: Closed HiHat
+   colour: white
+ - note: 46
+   name: Open HiHat
+   colour: white
+ - note: 47
+   name: MidTom
+   colour: white
+ - note: 48
+   name: HiTom
+   colour: white
+ - note: 51
+   name: Cymbal
+   colour: white
+ - note: 56
+   name: CowBell
+   colour: white
+ - note: 62
+   name: LowConga
+   colour: white
+ - note: 63
+   name: MidConga
+   colour: white
+ - note: 64
+   name: HiConga
+   colour: white
+ - note: 70
+   name: Maracas
+   colour: white
+ - note: 75
+   name: Clave
+   colour: white

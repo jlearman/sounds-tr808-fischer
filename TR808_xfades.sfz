@@ -1,0 +1,501 @@
+# Fischer TR-808 SFZ mapping
+#
+# samples by: "Michael Fischer"
+# SFZ by: "Jeff Learman & Jofemodo (Zynthian)"
+# license: "CC0"
+# original source_url: "https://github.com/tidalcycles/sounds-tr808-fischer"
+# current (temporary) source_url: "https://github.com/jlearman/sounds-tr808-fischer"
+# size: "12MB"
+
+# Keyswitches:
+#  A0  = crossfades for decay/snappy control, uses two voices per note,
+#        for bass drum, snare drum, and cymbal only
+#  Bb0 = no control crossfades - uses one voice per note
+
+# Instrument note assignments (close to GM drum mapping)
+
+<control>
+label_cc75=BassDrum Level
+set_cc75=64
+label_cc76=BassDrum Pan
+set_cc76=64
+label_cc77=BassDrum Tone
+set_cc77=64
+label_cc78=BassDrum Decay
+set_cc78=64
+label_cc79=Rimshot Level
+set_cc79=64
+label_cc80=Rimshot Pan
+set_cc80=64
+label_cc81=SnareDrum Level
+set_cc81=64
+label_cc82=SnareDrum Pan
+set_cc82=64
+label_cc83=SnareDrum Tone
+set_cc83=64
+label_cc84=SnareDrum Snappy
+set_cc84=64
+label_cc85=HandClap Level
+set_cc85=64
+label_cc86=HandClap Pan
+set_cc86=64
+label_cc87=LowTom Level
+set_cc87=64
+label_cc88=LowTom Pan
+set_cc88=64
+label_cc89=LowTom Tuning
+set_cc89=64
+label_cc90=Closed HiHat Level
+set_cc90=64
+label_cc91=Closed HiHat Pan
+set_cc91=64
+label_cc92=Open HiHat Level
+set_cc92=64
+label_cc93=Open HiHat Pan
+set_cc93=64
+label_cc94=Open HiHat Decay
+set_cc94=64
+label_cc95=MidTom Level
+set_cc95=64
+label_cc96=MidTom Pan
+set_cc96=64
+label_cc97=MidTom Tuning
+set_cc97=64
+label_cc98=HiTom Level
+set_cc98=64
+label_cc99=HiTom Pan
+set_cc99=64
+label_cc100=HiTom Tuning
+set_cc100=64
+label_cc101=Cymbal Level
+set_cc101=64
+label_cc102=Cymbal Pan
+set_cc102=64
+label_cc103=Cymbal Tone
+set_cc103=64
+label_cc104=Cymbal Decay
+set_cc104=64
+label_cc105=CowBell Level
+set_cc105=64
+label_cc106=CowBell Pan
+set_cc106=64
+label_cc107=LowConga Level
+set_cc107=64
+label_cc108=LowConga Pan
+set_cc108=64
+label_cc109=LowConga Tuning
+set_cc109=64
+label_cc110=MidConga Level
+set_cc110=64
+label_cc111=MidConga Pan
+set_cc111=64
+label_cc112=MidConga Tuning
+set_cc112=64
+label_cc113=HiConga Level
+set_cc113=64
+label_cc114=HiConga Pan
+set_cc114=64
+label_cc115=HiConga Tuning
+set_cc115=64
+label_cc116=Maracas Level
+set_cc116=64
+label_cc117=Maracas Pan
+set_cc117=64
+label_cc118=Clave Level
+set_cc118=64
+label_cc119=Clave Pan
+set_cc119=64
+
+<master> sw_lokey=A0 sw_hikey=Bb0 sw_default=A0
+<group> sw_last=A0 key=C2  loop_mode=one_shot
+volume=-24
+volume_oncc75=48
+pan_oncc76=100
+pan_curvecc76=1
+<region> sample=bd8/BD0000.WAV locc77=000 hicc77=015 locc78=000 xfout_locc 78=000 xfout_hicc 78=031 hicc078=031
+<region> sample=bd8/BD0025.WAV locc77=000 hicc77=015 locc78=000 xfin_locc 78=000 xfin_hicc 78=047 xfout_locc 78=031 xfout_hicc 78=047 hicc078=047
+<region> sample=bd8/BD0050.WAV locc77=000 hicc77=015 locc78=031 xfin_locc 78=031 xfin_hicc 78=079 xfout_locc 78=063 xfout_hicc 78=079 hicc078=079
+<region> sample=bd8/BD0075.WAV locc77=000 hicc77=015 locc78=063 xfin_locc 78=063 xfin_hicc 78=111 xfout_locc 78=095 xfout_hicc 78=111 hicc078=111
+<region> sample=bd8/BD0010.WAV locc77=000 hicc77=015 locc78=095 xfin_locc 78=095 xfin_hicc 78=127 hicc078=127
+<region> sample=bd8/BD2500.WAV locc77=016 hicc77=047 locc78=000 xfout_locc 78=000 xfout_hicc 78=031 hicc078=031
+<region> sample=bd8/BD2525.WAV locc77=016 hicc77=047 locc78=000 xfin_locc 78=000 xfin_hicc 78=047 xfout_locc 78=031 xfout_hicc 78=047 hicc078=047
+<region> sample=bd8/BD2550.WAV locc77=016 hicc77=047 locc78=031 xfin_locc 78=031 xfin_hicc 78=079 xfout_locc 78=063 xfout_hicc 78=079 hicc078=079
+<region> sample=bd8/BD2575.WAV locc77=016 hicc77=047 locc78=063 xfin_locc 78=063 xfin_hicc 78=111 xfout_locc 78=095 xfout_hicc 78=111 hicc078=111
+<region> sample=bd8/BD2510.WAV locc77=016 hicc77=047 locc78=095 xfin_locc 78=095 xfin_hicc 78=127 hicc078=127
+<region> sample=bd8/BD5000.WAV locc77=048 hicc77=079 locc78=000 xfout_locc 78=000 xfout_hicc 78=031 hicc078=031
+<region> sample=bd8/BD5025.WAV locc77=048 hicc77=079 locc78=000 xfin_locc 78=000 xfin_hicc 78=047 xfout_locc 78=031 xfout_hicc 78=047 hicc078=047
+<region> sample=bd8/BD5050.WAV locc77=048 hicc77=079 locc78=031 xfin_locc 78=031 xfin_hicc 78=079 xfout_locc 78=063 xfout_hicc 78=079 hicc078=079
+<region> sample=bd8/BD5075.WAV locc77=048 hicc77=079 locc78=063 xfin_locc 78=063 xfin_hicc 78=111 xfout_locc 78=095 xfout_hicc 78=111 hicc078=111
+<region> sample=bd8/BD5010.WAV locc77=048 hicc77=079 locc78=095 xfin_locc 78=095 xfin_hicc 78=127 hicc078=127
+<region> sample=bd8/BD7500.WAV locc77=080 hicc77=111 locc78=000 xfout_locc 78=000 xfout_hicc 78=031 hicc078=031
+<region> sample=bd8/BD7525.WAV locc77=080 hicc77=111 locc78=000 xfin_locc 78=000 xfin_hicc 78=047 xfout_locc 78=031 xfout_hicc 78=047 hicc078=047
+<region> sample=bd8/BD7550.WAV locc77=080 hicc77=111 locc78=031 xfin_locc 78=031 xfin_hicc 78=079 xfout_locc 78=063 xfout_hicc 78=079 hicc078=079
+<region> sample=bd8/BD7575.WAV locc77=080 hicc77=111 locc78=063 xfin_locc 78=063 xfin_hicc 78=111 xfout_locc 78=095 xfout_hicc 78=111 hicc078=111
+<region> sample=bd8/BD7510.WAV locc77=080 hicc77=111 locc78=095 xfin_locc 78=095 xfin_hicc 78=127 hicc078=127
+<region> sample=bd8/BD1000.WAV locc77=112 hicc77=127 locc78=000 xfout_locc 78=000 xfout_hicc 78=031 hicc078=031
+<region> sample=bd8/BD1025.WAV locc77=112 hicc77=127 locc78=000 xfin_locc 78=000 xfin_hicc 78=047 xfout_locc 78=031 xfout_hicc 78=047 hicc078=047
+<region> sample=bd8/BD1050.WAV locc77=112 hicc77=127 locc78=031 xfin_locc 78=031 xfin_hicc 78=079 xfout_locc 78=063 xfout_hicc 78=079 hicc078=079
+<region> sample=bd8/BD1075.WAV locc77=112 hicc77=127 locc78=063 xfin_locc 78=063 xfin_hicc 78=111 xfout_locc 78=095 xfout_hicc 78=111 hicc078=111
+<region> sample=bd8/BD1010.WAV locc77=112 hicc77=127 locc78=095 xfin_locc 78=095 xfin_hicc 78=127 hicc078=127
+<group> sw_last=A0 key=Db2 loop_mode=one_shot
+volume=-24
+volume_oncc79=48
+pan_oncc80=100
+pan_curvecc80=1
+<region> sample=rs8/RS.WAV    
+<group> sw_last=A0 key=D2  loop_mode=one_shot
+volume=-24
+volume_oncc81=48
+pan_oncc82=100
+pan_curvecc82=1
+<region> sample=sd8/SD0000.WAV locc83=000 hicc83=015 locc84=000 xfout_locc 84=000 xfout_hicc 84=031 hicc084=031
+<region> sample=sd8/SD0025.WAV locc83=000 hicc83=015 locc84=000 xfin_locc 84=000 xfin_hicc 84=047 xfout_locc 84=031 xfout_hicc 84=047 hicc084=047
+<region> sample=sd8/SD0050.WAV locc83=000 hicc83=015 locc84=031 xfin_locc 84=031 xfin_hicc 84=079 xfout_locc 84=063 xfout_hicc 84=079 hicc084=079
+<region> sample=sd8/SD0075.WAV locc83=000 hicc83=015 locc84=063 xfin_locc 84=063 xfin_hicc 84=111 xfout_locc 84=095 xfout_hicc 84=111 hicc084=111
+<region> sample=sd8/SD0010.WAV locc83=000 hicc83=015 locc84=095 xfin_locc 84=095 xfin_hicc 84=127 hicc084=127
+<region> sample=sd8/SD2500.WAV locc83=016 hicc83=047 locc84=000 xfout_locc 84=000 xfout_hicc 84=031 hicc084=031
+<region> sample=sd8/SD2525.WAV locc83=016 hicc83=047 locc84=000 xfin_locc 84=000 xfin_hicc 84=047 xfout_locc 84=031 xfout_hicc 84=047 hicc084=047
+<region> sample=sd8/SD2550.WAV locc83=016 hicc83=047 locc84=031 xfin_locc 84=031 xfin_hicc 84=079 xfout_locc 84=063 xfout_hicc 84=079 hicc084=079
+<region> sample=sd8/SD2575.WAV locc83=016 hicc83=047 locc84=063 xfin_locc 84=063 xfin_hicc 84=111 xfout_locc 84=095 xfout_hicc 84=111 hicc084=111
+<region> sample=sd8/SD2510.WAV locc83=016 hicc83=047 locc84=095 xfin_locc 84=095 xfin_hicc 84=127 hicc084=127
+<region> sample=sd8/SD5000.WAV locc83=048 hicc83=079 locc84=000 xfout_locc 84=000 xfout_hicc 84=031 hicc084=031
+<region> sample=sd8/SD5025.WAV locc83=048 hicc83=079 locc84=000 xfin_locc 84=000 xfin_hicc 84=047 xfout_locc 84=031 xfout_hicc 84=047 hicc084=047
+<region> sample=sd8/SD5050.WAV locc83=048 hicc83=079 locc84=031 xfin_locc 84=031 xfin_hicc 84=079 xfout_locc 84=063 xfout_hicc 84=079 hicc084=079
+<region> sample=sd8/SD5075.WAV locc83=048 hicc83=079 locc84=063 xfin_locc 84=063 xfin_hicc 84=111 xfout_locc 84=095 xfout_hicc 84=111 hicc084=111
+<region> sample=sd8/SD5010.WAV locc83=048 hicc83=079 locc84=095 xfin_locc 84=095 xfin_hicc 84=127 hicc084=127
+<region> sample=sd8/SD7500.WAV locc83=080 hicc83=111 locc84=000 xfout_locc 84=000 xfout_hicc 84=031 hicc084=031
+<region> sample=sd8/SD7525.WAV locc83=080 hicc83=111 locc84=000 xfin_locc 84=000 xfin_hicc 84=047 xfout_locc 84=031 xfout_hicc 84=047 hicc084=047
+<region> sample=sd8/SD7550.WAV locc83=080 hicc83=111 locc84=031 xfin_locc 84=031 xfin_hicc 84=079 xfout_locc 84=063 xfout_hicc 84=079 hicc084=079
+<region> sample=sd8/SD7575.WAV locc83=080 hicc83=111 locc84=063 xfin_locc 84=063 xfin_hicc 84=111 xfout_locc 84=095 xfout_hicc 84=111 hicc084=111
+<region> sample=sd8/SD7510.WAV locc83=080 hicc83=111 locc84=095 xfin_locc 84=095 xfin_hicc 84=127 hicc084=127
+<region> sample=sd8/SD1000.WAV locc83=112 hicc83=127 locc84=000 xfout_locc 84=000 xfout_hicc 84=031 hicc084=031
+<region> sample=sd8/SD1025.WAV locc83=112 hicc83=127 locc84=000 xfin_locc 84=000 xfin_hicc 84=047 xfout_locc 84=031 xfout_hicc 84=047 hicc084=047
+<region> sample=sd8/SD1050.WAV locc83=112 hicc83=127 locc84=031 xfin_locc 84=031 xfin_hicc 84=079 xfout_locc 84=063 xfout_hicc 84=079 hicc084=079
+<region> sample=sd8/SD1075.WAV locc83=112 hicc83=127 locc84=063 xfin_locc 84=063 xfin_hicc 84=111 xfout_locc 84=095 xfout_hicc 84=111 hicc084=111
+<region> sample=sd8/SD1010.WAV locc83=112 hicc83=127 locc84=095 xfin_locc 84=095 xfin_hicc 84=127 hicc084=127
+<group> sw_last=A0 key=Eb2 loop_mode=one_shot
+volume=-24
+volume_oncc85=48
+pan_oncc86=100
+pan_curvecc86=1
+<region> sample=cp8/CP.WAV    
+<group> sw_last=A0 key=F2  loop_mode=one_shot
+volume=-24
+volume_oncc87=48
+pan_oncc88=100
+pan_curvecc88=1
+<region> sample=lt8/LT00.WAV   locc89=000 hicc89=015
+<region> sample=lt8/LT25.WAV   locc89=016 hicc89=047
+<region> sample=lt8/LT50.WAV   locc89=048 hicc89=079
+<region> sample=lt8/LT75.WAV   locc89=080 hicc89=111
+<region> sample=lt8/LT10.WAV   locc89=112 hicc89=127
+<group> sw_last=A0 key=Gb2 loop_mode=one_shot
+volume=-24
+volume_oncc90=48
+pan_oncc91=100
+pan_curvecc91=1
+<region> sample=ch8/CH.WAV     group=1 off_by=1
+<group> sw_last=A0 key=Bb2 loop_mode=one_shot
+volume=-24
+volume_oncc92=48
+pan_oncc93=100
+pan_curvecc93=1
+<region> sample=oh8/OH00.WAV   locc94=000 hicc94=015 group=1 off_by=1
+<region> sample=oh8/OH25.WAV   locc94=016 hicc94=047 group=1 off_by=1
+<region> sample=oh8/OH50.WAV   locc94=048 hicc94=079 group=1 off_by=1
+<region> sample=oh8/OH75.WAV   locc94=080 hicc94=111 group=1 off_by=1
+<region> sample=oh8/OH10.WAV   locc94=112 hicc94=127 group=1 off_by=1
+<group> sw_last=A0 key=B2  loop_mode=one_shot
+volume=-24
+volume_oncc95=48
+pan_oncc96=100
+pan_curvecc96=1
+<region> sample=mt8/MT00.WAV   locc97=000 hicc97=015
+<region> sample=mt8/MT25.WAV   locc97=016 hicc97=047
+<region> sample=mt8/MT50.WAV   locc97=048 hicc97=079
+<region> sample=mt8/MT75.WAV   locc97=080 hicc97=111
+<region> sample=mt8/MT10.WAV   locc97=112 hicc97=127
+<group> sw_last=A0 key=C3  loop_mode=one_shot
+volume=-24
+volume_oncc98=48
+pan_oncc99=100
+pan_curvecc99=1
+<region> sample=ht8/HT00.WAV   locc100=000 hicc100=015
+<region> sample=ht8/HT25.WAV   locc100=016 hicc100=047
+<region> sample=ht8/HT50.WAV   locc100=048 hicc100=079
+<region> sample=ht8/HT75.WAV   locc100=080 hicc100=111
+<region> sample=ht8/HT10.WAV   locc100=112 hicc100=127
+<group> sw_last=A0 key=Eb3 loop_mode=one_shot
+volume=-24
+volume_oncc101=48
+pan_oncc102=100
+pan_curvecc102=1
+<region> sample=cy8/CY0000.WAV locc103=000 hicc103=015 locc104=000 xfout_locc104=000 xfout_hicc104=031 hicc104=031
+<region> sample=cy8/CY0025.WAV locc103=000 hicc103=015 locc104=000 xfin_locc104=000 xfin_hicc104=047 xfout_locc104=031 xfout_hicc104=047 hicc104=047
+<region> sample=cy8/CY0050.WAV locc103=000 hicc103=015 locc104=031 xfin_locc104=031 xfin_hicc104=079 xfout_locc104=063 xfout_hicc104=079 hicc104=079
+<region> sample=cy8/CY0075.WAV locc103=000 hicc103=015 locc104=063 xfin_locc104=063 xfin_hicc104=111 xfout_locc104=095 xfout_hicc104=111 hicc104=111
+<region> sample=cy8/CY0010.WAV locc103=000 hicc103=015 locc104=095 xfin_locc104=095 xfin_hicc104=127 hicc104=127
+<region> sample=cy8/CY2500.WAV locc103=016 hicc103=047 locc104=000 xfout_locc104=000 xfout_hicc104=031 hicc104=031
+<region> sample=cy8/CY2525.WAV locc103=016 hicc103=047 locc104=000 xfin_locc104=000 xfin_hicc104=047 xfout_locc104=031 xfout_hicc104=047 hicc104=047
+<region> sample=cy8/CY2550.WAV locc103=016 hicc103=047 locc104=031 xfin_locc104=031 xfin_hicc104=079 xfout_locc104=063 xfout_hicc104=079 hicc104=079
+<region> sample=cy8/CY2575.WAV locc103=016 hicc103=047 locc104=063 xfin_locc104=063 xfin_hicc104=111 xfout_locc104=095 xfout_hicc104=111 hicc104=111
+<region> sample=cy8/CY2510.WAV locc103=016 hicc103=047 locc104=095 xfin_locc104=095 xfin_hicc104=127 hicc104=127
+<region> sample=cy8/CY5000.WAV locc103=048 hicc103=079 locc104=000 xfout_locc104=000 xfout_hicc104=031 hicc104=031
+<region> sample=cy8/CY5025.WAV locc103=048 hicc103=079 locc104=000 xfin_locc104=000 xfin_hicc104=047 xfout_locc104=031 xfout_hicc104=047 hicc104=047
+<region> sample=cy8/CY5050.WAV locc103=048 hicc103=079 locc104=031 xfin_locc104=031 xfin_hicc104=079 xfout_locc104=063 xfout_hicc104=079 hicc104=079
+<region> sample=cy8/CY5075.WAV locc103=048 hicc103=079 locc104=063 xfin_locc104=063 xfin_hicc104=111 xfout_locc104=095 xfout_hicc104=111 hicc104=111
+<region> sample=cy8/CY5010.WAV locc103=048 hicc103=079 locc104=095 xfin_locc104=095 xfin_hicc104=127 hicc104=127
+<region> sample=cy8/CY7500.WAV locc103=080 hicc103=111 locc104=000 xfout_locc104=000 xfout_hicc104=031 hicc104=031
+<region> sample=cy8/CY7525.WAV locc103=080 hicc103=111 locc104=000 xfin_locc104=000 xfin_hicc104=047 xfout_locc104=031 xfout_hicc104=047 hicc104=047
+<region> sample=cy8/CY7550.WAV locc103=080 hicc103=111 locc104=031 xfin_locc104=031 xfin_hicc104=079 xfout_locc104=063 xfout_hicc104=079 hicc104=079
+<region> sample=cy8/CY7575.WAV locc103=080 hicc103=111 locc104=063 xfin_locc104=063 xfin_hicc104=111 xfout_locc104=095 xfout_hicc104=111 hicc104=111
+<region> sample=cy8/CY7510.WAV locc103=080 hicc103=111 locc104=095 xfin_locc104=095 xfin_hicc104=127 hicc104=127
+<region> sample=cy8/CY1000.WAV locc103=112 hicc103=127 locc104=000 xfout_locc104=000 xfout_hicc104=031 hicc104=031
+<region> sample=cy8/CY1025.WAV locc103=112 hicc103=127 locc104=000 xfin_locc104=000 xfin_hicc104=047 xfout_locc104=031 xfout_hicc104=047 hicc104=047
+<region> sample=cy8/CY1050.WAV locc103=112 hicc103=127 locc104=031 xfin_locc104=031 xfin_hicc104=079 xfout_locc104=063 xfout_hicc104=079 hicc104=079
+<region> sample=cy8/CY1075.WAV locc103=112 hicc103=127 locc104=063 xfin_locc104=063 xfin_hicc104=111 xfout_locc104=095 xfout_hicc104=111 hicc104=111
+<region> sample=cy8/CY1010.WAV locc103=112 hicc103=127 locc104=095 xfin_locc104=095 xfin_hicc104=127 hicc104=127
+<group> sw_last=A0 key=Ab3 loop_mode=one_shot
+volume=-24
+volume_oncc105=48
+pan_oncc106=100
+pan_curvecc106=1
+<region> sample=cb8/CB.WAV    
+<group> sw_last=A0 key=D4  loop_mode=one_shot
+volume=-24
+volume_oncc107=48
+pan_oncc108=100
+pan_curvecc108=1
+<region> sample=lc8/LC00.WAV   locc109=000 hicc109=015
+<region> sample=lc8/LC25.WAV   locc109=016 hicc109=047
+<region> sample=lc8/LC50.WAV   locc109=048 hicc109=079
+<region> sample=lc8/LC75.WAV   locc109=080 hicc109=111
+<region> sample=lc8/LC10.WAV   locc109=112 hicc109=127
+<group> sw_last=A0 key=Eb4 loop_mode=one_shot
+volume=-24
+volume_oncc110=48
+pan_oncc111=100
+pan_curvecc111=1
+<region> sample=mc8/MC00.WAV   locc112=000 hicc112=015
+<region> sample=mc8/MC25.WAV   locc112=016 hicc112=047
+<region> sample=mc8/MC50.WAV   locc112=048 hicc112=079
+<region> sample=mc8/MC75.WAV   locc112=080 hicc112=111
+<region> sample=mc8/MC10.WAV   locc112=112 hicc112=127
+<group> sw_last=A0 key=E4  loop_mode=one_shot
+volume=-24
+volume_oncc113=48
+pan_oncc114=100
+pan_curvecc114=1
+<region> sample=hc8/HC00.WAV   locc115=000 hicc115=015
+<region> sample=hc8/HC25.WAV   locc115=016 hicc115=047
+<region> sample=hc8/HC50.WAV   locc115=048 hicc115=079
+<region> sample=hc8/HC75.WAV   locc115=080 hicc115=111
+<region> sample=hc8/HC10.WAV   locc115=112 hicc115=127
+<group> sw_last=A0 key=Bb4 loop_mode=one_shot
+volume=-24
+volume_oncc116=48
+pan_oncc117=100
+pan_curvecc117=1
+<region> sample=ma8/MA.WAV    
+<group> sw_last=A0 key=Eb5 loop_mode=one_shot
+volume=-24
+volume_oncc118=48
+pan_oncc119=100
+pan_curvecc119=1
+<region> sample=cl8/CL.WAV    
+<group> sw_last=Bb0 key=C2  loop_mode=one_shot
+volume=-24
+volume_oncc75=48
+pan_oncc76=100
+pan_curvecc76=1
+<region> sample=bd8/BD0000.WAV locc77=000 hicc77=015 locc78=000 hicc78=015
+<region> sample=bd8/BD0025.WAV locc77=000 hicc77=015 locc78=016 hicc78=047
+<region> sample=bd8/BD0050.WAV locc77=000 hicc77=015 locc78=048 hicc78=079
+<region> sample=bd8/BD0075.WAV locc77=000 hicc77=015 locc78=080 hicc78=111
+<region> sample=bd8/BD0010.WAV locc77=000 hicc77=015 locc78=112 hicc78=127
+<region> sample=bd8/BD2500.WAV locc77=016 hicc77=047 locc78=000 hicc78=015
+<region> sample=bd8/BD2525.WAV locc77=016 hicc77=047 locc78=016 hicc78=047
+<region> sample=bd8/BD2550.WAV locc77=016 hicc77=047 locc78=048 hicc78=079
+<region> sample=bd8/BD2575.WAV locc77=016 hicc77=047 locc78=080 hicc78=111
+<region> sample=bd8/BD2510.WAV locc77=016 hicc77=047 locc78=112 hicc78=127
+<region> sample=bd8/BD5000.WAV locc77=048 hicc77=079 locc78=000 hicc78=015
+<region> sample=bd8/BD5025.WAV locc77=048 hicc77=079 locc78=016 hicc78=047
+<region> sample=bd8/BD5050.WAV locc77=048 hicc77=079 locc78=048 hicc78=079
+<region> sample=bd8/BD5075.WAV locc77=048 hicc77=079 locc78=080 hicc78=111
+<region> sample=bd8/BD5010.WAV locc77=048 hicc77=079 locc78=112 hicc78=127
+<region> sample=bd8/BD7500.WAV locc77=080 hicc77=111 locc78=000 hicc78=015
+<region> sample=bd8/BD7525.WAV locc77=080 hicc77=111 locc78=016 hicc78=047
+<region> sample=bd8/BD7550.WAV locc77=080 hicc77=111 locc78=048 hicc78=079
+<region> sample=bd8/BD7575.WAV locc77=080 hicc77=111 locc78=080 hicc78=111
+<region> sample=bd8/BD7510.WAV locc77=080 hicc77=111 locc78=112 hicc78=127
+<region> sample=bd8/BD1000.WAV locc77=112 hicc77=127 locc78=000 hicc78=015
+<region> sample=bd8/BD1025.WAV locc77=112 hicc77=127 locc78=016 hicc78=047
+<region> sample=bd8/BD1050.WAV locc77=112 hicc77=127 locc78=048 hicc78=079
+<region> sample=bd8/BD1075.WAV locc77=112 hicc77=127 locc78=080 hicc78=111
+<region> sample=bd8/BD1010.WAV locc77=112 hicc77=127 locc78=112 hicc78=127
+<group> sw_last=Bb0 key=Db2 loop_mode=one_shot
+volume=-24
+volume_oncc79=48
+pan_oncc80=100
+pan_curvecc80=1
+<region> sample=rs8/RS.WAV    
+<group> sw_last=Bb0 key=D2  loop_mode=one_shot
+volume=-24
+volume_oncc81=48
+pan_oncc82=100
+pan_curvecc82=1
+<region> sample=sd8/SD0000.WAV locc83=000 hicc83=015 locc84=000 hicc84=015
+<region> sample=sd8/SD0025.WAV locc83=000 hicc83=015 locc84=016 hicc84=047
+<region> sample=sd8/SD0050.WAV locc83=000 hicc83=015 locc84=048 hicc84=079
+<region> sample=sd8/SD0075.WAV locc83=000 hicc83=015 locc84=080 hicc84=111
+<region> sample=sd8/SD0010.WAV locc83=000 hicc83=015 locc84=112 hicc84=127
+<region> sample=sd8/SD2500.WAV locc83=016 hicc83=047 locc84=000 hicc84=015
+<region> sample=sd8/SD2525.WAV locc83=016 hicc83=047 locc84=016 hicc84=047
+<region> sample=sd8/SD2550.WAV locc83=016 hicc83=047 locc84=048 hicc84=079
+<region> sample=sd8/SD2575.WAV locc83=016 hicc83=047 locc84=080 hicc84=111
+<region> sample=sd8/SD2510.WAV locc83=016 hicc83=047 locc84=112 hicc84=127
+<region> sample=sd8/SD5000.WAV locc83=048 hicc83=079 locc84=000 hicc84=015
+<region> sample=sd8/SD5025.WAV locc83=048 hicc83=079 locc84=016 hicc84=047
+<region> sample=sd8/SD5050.WAV locc83=048 hicc83=079 locc84=048 hicc84=079
+<region> sample=sd8/SD5075.WAV locc83=048 hicc83=079 locc84=080 hicc84=111
+<region> sample=sd8/SD5010.WAV locc83=048 hicc83=079 locc84=112 hicc84=127
+<region> sample=sd8/SD7500.WAV locc83=080 hicc83=111 locc84=000 hicc84=015
+<region> sample=sd8/SD7525.WAV locc83=080 hicc83=111 locc84=016 hicc84=047
+<region> sample=sd8/SD7550.WAV locc83=080 hicc83=111 locc84=048 hicc84=079
+<region> sample=sd8/SD7575.WAV locc83=080 hicc83=111 locc84=080 hicc84=111
+<region> sample=sd8/SD7510.WAV locc83=080 hicc83=111 locc84=112 hicc84=127
+<region> sample=sd8/SD1000.WAV locc83=112 hicc83=127 locc84=000 hicc84=015
+<region> sample=sd8/SD1025.WAV locc83=112 hicc83=127 locc84=016 hicc84=047
+<region> sample=sd8/SD1050.WAV locc83=112 hicc83=127 locc84=048 hicc84=079
+<region> sample=sd8/SD1075.WAV locc83=112 hicc83=127 locc84=080 hicc84=111
+<region> sample=sd8/SD1010.WAV locc83=112 hicc83=127 locc84=112 hicc84=127
+<group> sw_last=Bb0 key=Eb2 loop_mode=one_shot
+volume=-24
+volume_oncc85=48
+pan_oncc86=100
+pan_curvecc86=1
+<region> sample=cp8/CP.WAV    
+<group> sw_last=Bb0 key=F2  loop_mode=one_shot
+volume=-24
+volume_oncc87=48
+pan_oncc88=100
+pan_curvecc88=1
+<region> sample=lt8/LT00.WAV   locc89=000 hicc89=015
+<region> sample=lt8/LT25.WAV   locc89=016 hicc89=047
+<region> sample=lt8/LT50.WAV   locc89=048 hicc89=079
+<region> sample=lt8/LT75.WAV   locc89=080 hicc89=111
+<region> sample=lt8/LT10.WAV   locc89=112 hicc89=127
+<group> sw_last=Bb0 key=Gb2 loop_mode=one_shot
+volume=-24
+volume_oncc90=48
+pan_oncc91=100
+pan_curvecc91=1
+<region> sample=ch8/CH.WAV     group=1 off_by=1
+<group> sw_last=Bb0 key=Bb2 loop_mode=one_shot
+volume=-24
+volume_oncc92=48
+pan_oncc93=100
+pan_curvecc93=1
+<region> sample=oh8/OH00.WAV   locc94=000 hicc94=015 group=1 off_by=1
+<region> sample=oh8/OH25.WAV   locc94=016 hicc94=047 group=1 off_by=1
+<region> sample=oh8/OH50.WAV   locc94=048 hicc94=079 group=1 off_by=1
+<region> sample=oh8/OH75.WAV   locc94=080 hicc94=111 group=1 off_by=1
+<region> sample=oh8/OH10.WAV   locc94=112 hicc94=127 group=1 off_by=1
+<group> sw_last=Bb0 key=B2  loop_mode=one_shot
+volume=-24
+volume_oncc95=48
+pan_oncc96=100
+pan_curvecc96=1
+<region> sample=mt8/MT00.WAV   locc97=000 hicc97=015
+<region> sample=mt8/MT25.WAV   locc97=016 hicc97=047
+<region> sample=mt8/MT50.WAV   locc97=048 hicc97=079
+<region> sample=mt8/MT75.WAV   locc97=080 hicc97=111
+<region> sample=mt8/MT10.WAV   locc97=112 hicc97=127
+<group> sw_last=Bb0 key=C3  loop_mode=one_shot
+volume=-24
+volume_oncc98=48
+pan_oncc99=100
+pan_curvecc99=1
+<region> sample=ht8/HT00.WAV   locc100=000 hicc100=015
+<region> sample=ht8/HT25.WAV   locc100=016 hicc100=047
+<region> sample=ht8/HT50.WAV   locc100=048 hicc100=079
+<region> sample=ht8/HT75.WAV   locc100=080 hicc100=111
+<region> sample=ht8/HT10.WAV   locc100=112 hicc100=127
+<group> sw_last=Bb0 key=Eb3 loop_mode=one_shot
+volume=-24
+volume_oncc101=48
+pan_oncc102=100
+pan_curvecc102=1
+<region> sample=cy8/CY0000.WAV locc103=000 hicc103=015 locc104=000 hicc104=015
+<region> sample=cy8/CY0025.WAV locc103=000 hicc103=015 locc104=016 hicc104=047
+<region> sample=cy8/CY0050.WAV locc103=000 hicc103=015 locc104=048 hicc104=079
+<region> sample=cy8/CY0075.WAV locc103=000 hicc103=015 locc104=080 hicc104=111
+<region> sample=cy8/CY0010.WAV locc103=000 hicc103=015 locc104=112 hicc104=127
+<region> sample=cy8/CY2500.WAV locc103=016 hicc103=047 locc104=000 hicc104=015
+<region> sample=cy8/CY2525.WAV locc103=016 hicc103=047 locc104=016 hicc104=047
+<region> sample=cy8/CY2550.WAV locc103=016 hicc103=047 locc104=048 hicc104=079
+<region> sample=cy8/CY2575.WAV locc103=016 hicc103=047 locc104=080 hicc104=111
+<region> sample=cy8/CY2510.WAV locc103=016 hicc103=047 locc104=112 hicc104=127
+<region> sample=cy8/CY5000.WAV locc103=048 hicc103=079 locc104=000 hicc104=015
+<region> sample=cy8/CY5025.WAV locc103=048 hicc103=079 locc104=016 hicc104=047
+<region> sample=cy8/CY5050.WAV locc103=048 hicc103=079 locc104=048 hicc104=079
+<region> sample=cy8/CY5075.WAV locc103=048 hicc103=079 locc104=080 hicc104=111
+<region> sample=cy8/CY5010.WAV locc103=048 hicc103=079 locc104=112 hicc104=127
+<region> sample=cy8/CY7500.WAV locc103=080 hicc103=111 locc104=000 hicc104=015
+<region> sample=cy8/CY7525.WAV locc103=080 hicc103=111 locc104=016 hicc104=047
+<region> sample=cy8/CY7550.WAV locc103=080 hicc103=111 locc104=048 hicc104=079
+<region> sample=cy8/CY7575.WAV locc103=080 hicc103=111 locc104=080 hicc104=111
+<region> sample=cy8/CY7510.WAV locc103=080 hicc103=111 locc104=112 hicc104=127
+<region> sample=cy8/CY1000.WAV locc103=112 hicc103=127 locc104=000 hicc104=015
+<region> sample=cy8/CY1025.WAV locc103=112 hicc103=127 locc104=016 hicc104=047
+<region> sample=cy8/CY1050.WAV locc103=112 hicc103=127 locc104=048 hicc104=079
+<region> sample=cy8/CY1075.WAV locc103=112 hicc103=127 locc104=080 hicc104=111
+<region> sample=cy8/CY1010.WAV locc103=112 hicc103=127 locc104=112 hicc104=127
+<group> sw_last=Bb0 key=Ab3 loop_mode=one_shot
+volume=-24
+volume_oncc105=48
+pan_oncc106=100
+pan_curvecc106=1
+<region> sample=cb8/CB.WAV    
+<group> sw_last=Bb0 key=D4  loop_mode=one_shot
+volume=-24
+volume_oncc107=48
+pan_oncc108=100
+pan_curvecc108=1
+<region> sample=lc8/LC00.WAV   locc109=000 hicc109=015
+<region> sample=lc8/LC25.WAV   locc109=016 hicc109=047
+<region> sample=lc8/LC50.WAV   locc109=048 hicc109=079
+<region> sample=lc8/LC75.WAV   locc109=080 hicc109=111
+<region> sample=lc8/LC10.WAV   locc109=112 hicc109=127
+<group> sw_last=Bb0 key=Eb4 loop_mode=one_shot
+volume=-24
+volume_oncc110=48
+pan_oncc111=100
+pan_curvecc111=1
+<region> sample=mc8/MC00.WAV   locc112=000 hicc112=015
+<region> sample=mc8/MC25.WAV   locc112=016 hicc112=047
+<region> sample=mc8/MC50.WAV   locc112=048 hicc112=079
+<region> sample=mc8/MC75.WAV   locc112=080 hicc112=111
+<region> sample=mc8/MC10.WAV   locc112=112 hicc112=127
+<group> sw_last=Bb0 key=E4  loop_mode=one_shot
+volume=-24
+volume_oncc113=48
+pan_oncc114=100
+pan_curvecc114=1
+<region> sample=hc8/HC00.WAV   locc115=000 hicc115=015
+<region> sample=hc8/HC25.WAV   locc115=016 hicc115=047
+<region> sample=hc8/HC50.WAV   locc115=048 hicc115=079
+<region> sample=hc8/HC75.WAV   locc115=080 hicc115=111
+<region> sample=hc8/HC10.WAV   locc115=112 hicc115=127
+<group> sw_last=Bb0 key=Bb4 loop_mode=one_shot
+volume=-24
+volume_oncc116=48
+pan_oncc117=100
+pan_curvecc117=1
+<region> sample=ma8/MA.WAV    
+<group> sw_last=Bb0 key=Eb5 loop_mode=one_shot
+volume=-24
+volume_oncc118=48
+pan_oncc119=100
+pan_curvecc119=1
+<region> sample=cl8/CL.WAV    

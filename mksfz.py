@@ -3,23 +3,55 @@
 import enum
 import sys
 
-next_cc = 102 # next available CC number
+next_cc = 75 # next available CC number
 instrument_first_cc = {} # dict on abbr of first cc# for controls
 
 header = '''# Fischer TR-808 SFZ mapping
 #
-# author: "Michael Fischer"
+# samples by: "Michael Fischer"
+# SFZ by: "Jeff Learman & Jofemodo (Zynthian)"
 # license: "CC0"
 # original source_url: "https://github.com/tidalcycles/sounds-tr808-fischer"
 # current (temporary) source_url: "https://github.com/jlearman/sounds-tr808-fischer"
 # size: "12MB"
-
-# Keyswitches:
-#  A0 = crossfades for decay/snappy control, uses two voices per note,
-#       for bass drum, snare drum, and cymbal only
-#  Bb = no control crossfades - uses one voice per note
 '''
 
+header_no_xfades = '''
+# No control crossfades. Uses one voice per note.
+'''
+
+header_keyswitches = '''
+# Keyswitches:
+#  A0  = crossfades for decay/snappy control, uses two voices per note,
+#        for bass drum, snare drum, and cymbal only
+#  Bb0 = no control crossfades - uses one voice per note
+'''
+
+header_zynthian_yaml = '''
+controllers:
+ Global:
+  volume:
+   midi_cc: 7
+   value: 127
+   name: "Volume"
+  pan:
+   midi_cc: 10
+   value: 64
+   name: "Pan"
+  expression:
+   midi_cc: 11
+   value: 127
+   name: "Expression"
+'''
+
+header_zynthian_yaml_keyswitches = header_zynthian_yaml + '''
+  crossfade:
+   graph_path: 'note_on'
+   labels: ['OFF', 'ON']
+   ticks: [22, 21]
+   name: "Cross-Fade Samples"
+
+'''
 
 # tuple per level range, of (name, lo CC, hi CC)
 level_ranges = {
@@ -39,23 +71,33 @@ def level_midpoint(ix:int):
         case _:
             return (level_ranges[ix][1] + level_ranges[ix][2]) // 2
 
+# Generate Zynthian YAML Controller label & ticks
+control_labels = ["0", "25", "50", "75", "100"]
+control_ticks = []
+for i in range(len(level_ranges)):
+    control_ticks.append(level_midpoint(i))
+
+
 class Control(enum.Enum):
-    TONE = "tone"
-    TUNING = "tuning"
-    DECAY = "decay"
-    SNAPPY = "snappy"
+    LEVEL = "Level"
+    PAN = "Pan"
+    TONE = "Tone"
+    TUNING = "Tuning"
+    DECAY = "Decay"
+    SNAPPY = "Snappy"
 
 class Instrument(object):
     abbrev = ""
     name = ""
     controls = () # tuple of Control, at most two
 
-    def __init__(self, abbr:str, key:str, n:str, ctrls:list[Control], group:int=None):
+    def __init__(self, abbr:str, key:str, keynum:int, name:str, ctrls:list[Control], group:int=None):
         global instrument_first_cc
         global next_cc
         self.abbr = abbr
         self.note = key
-        self.name = n
+        self.note_num = keynum
+        self.name = name
         self.controls = ctrls
         self.ccs = {}
         self.group = group
@@ -74,33 +116,31 @@ class Instrument(object):
         return n + ".WAV"
 
     def render_region(self, ctrl_level_indexes:list[int], keyswitch=False):
-        print(f"<region> key={self.note:3} loop_mode=one_shot", end="")
+        res = f"<region>"
         match len(ctrl_level_indexes):
             case 0:
-                print(f" sample={self.sample_fname(()):14}", end="")
+                res += f" sample={self.sample_fname(()):14}"
             case 1:
-                c1_cc = instrument_first_cc[self.abbr]
+                c1_cc = instrument_first_cc[self.abbr] + 2
                 c1_ix = ctrl_level_indexes[0]
                 c1_id = level_ranges[c1_ix][0]
                 c1_lo = level_ranges[c1_ix][1]
                 c1_hi = level_ranges[c1_ix][2]
-                print(f" sample={self.sample_fname((c1_id,)):14}", end="")
-                print(f" locc{c1_cc}={c1_lo:03} hicc{c1_cc}={c1_hi:03}", end="")
+                res += f" sample={self.sample_fname((c1_id,)):14}"
+                res += f" locc{c1_cc}={c1_lo:03} hicc{c1_cc}={c1_hi:03}"
             case 2:
-                c1_cc = instrument_first_cc[self.abbr]
+                c1_cc = instrument_first_cc[self.abbr] + 2
                 c1_ix = ctrl_level_indexes[0]
                 c1_id = level_ranges[c1_ix][0]
                 c1_lo = level_ranges[c1_ix][1]
                 c1_hi = level_ranges[c1_ix][2]
-                c1_cc = instrument_first_cc[self.abbr]
+                c2_cc = c1_cc + 1
                 c2_ix = ctrl_level_indexes[1]
                 c2_id = level_ranges[c2_ix][0]
                 c2_lo = level_ranges[c2_ix][1]
                 c2_hi = level_ranges[c2_ix][2]
-                c2_cc = c1_cc + 1
-                print(f" sample={self.sample_fname((c1_id,c2_id)):14}", end="")
-                print(f" locc{c1_cc}={c1_lo:03} hicc{c1_cc}={c1_hi:03}", end="")
-
+                res += f" sample={self.sample_fname((c1_id,c2_id)):14}"
+                res += f" locc{c1_cc}={c1_lo:03} hicc{c1_cc}={c1_hi:03}"
                 # Only dual-control instruments have tone keyswitch, and tone is always 1st control
                 if keyswitch:
                     match c2_ix:
@@ -108,9 +148,9 @@ class Instrument(object):
                             c2_lo       = 0
                             c2_xfout_lo = 0
                             c2_hi       = level_midpoint(c2_ix+1)
-                            print(f" locc{c2_cc}={c2_lo:03}", end="")
-                            print(f" xfout_locc{c2_cc:3}={c2_xfout_lo:03} xfout_hicc{c2_cc:3}={c2_hi:03}", end="")
-                            print(f" hicc{c2_cc:03}={c2_hi:03}", end="")
+                            res += f" locc{c2_cc}={c2_lo:03}"
+                            res += f" xfout_locc{c2_cc:3}={c2_xfout_lo:03} xfout_hicc{c2_cc:3}={c2_hi:03}"
+                            res += f" hicc{c2_cc:03}={c2_hi:03}"
                         case 4: # top special case
                             c2_lo       = level_midpoint(c2_ix-1)
                             c2_xfin_lo  = c2_lo
@@ -118,98 +158,173 @@ class Instrument(object):
                             c2_xfout_lo = c2_xfin_hi
                             c2_xfout_hi = 127
                             c2_hi       = 127
-                            print(f" locc{c2_cc}={c2_lo:03}", end="")
-                            print(f" xfin_locc{c2_cc:3}={c2_lo:03} xfin_hicc{c2_cc:3}={c2_hi:03}", end="")
-                            print(f" hicc{c2_cc:03}={c2_hi:03}", end="")
+                            res += f" locc{c2_cc}={c2_lo:03}"
+                            res += f" xfin_locc{c2_cc:3}={c2_lo:03} xfin_hicc{c2_cc:3}={c2_hi:03}"
+                            res += f" hicc{c2_cc:03}={c2_hi:03}"
                         case _: # middle cases
                             c2_lo       = level_midpoint(c2_ix-1)
                             c2_xfin_lo  = c2_lo
                             c2_xfin_hi  = level_midpoint(c2_ix)
                             c2_xfout_lo = c2_xfin_hi
                             c2_xfout_hi = level_midpoint(c2_ix+1)
-                            print(f" locc{c2_cc}={c2_lo:03}", end="")
-                            print(f" xfin_locc{c2_cc:3}={c2_lo:03} xfin_hicc{c2_cc:3}={c2_hi:03}", end="")
-                            print(f" xfout_locc{c2_cc:3}={c2_xfout_lo:03} xfout_hicc{c2_cc:3}={c2_hi:03}", end="")
-                            print(f" hicc{c2_cc:03}={c2_hi:03}", end="")
+                            res += f" locc{c2_cc}={c2_lo:03}"
+                            res += f" xfin_locc{c2_cc:3}={c2_lo:03} xfin_hicc{c2_cc:3}={c2_hi:03}"
+                            res += f" xfout_locc{c2_cc:3}={c2_xfout_lo:03} xfout_hicc{c2_cc:3}={c2_hi:03}"
+                            res += f" hicc{c2_cc:03}={c2_hi:03}"
                 else:
-                    print(f" locc{c2_cc}={c2_lo:03} hicc{c2_cc}={c2_hi:03}", end="")
+                    res += f" locc{c2_cc}={c2_lo:03} hicc{c2_cc}={c2_hi:03}"
 
         if self.group:
-            print(f" group={self.group} off_by={self.group}", end="")
-        print()
+            res += f" group={self.group} off_by={self.group}"
+        return res + "\n"
 
     def render_sfz(self, keyswitch=False):
+        if keyswitch:
+            key_sw = "A0"
+        else:
+            key_sw = "Bb0"
+
+        res = f"<group> sw_last={key_sw} key={self.note:3} loop_mode=one_shot\n"
+        ccnum = instrument_first_cc[self.abbr]
+        res += f"volume=-24\n"
+        res += f"volume_oncc{ccnum}=48\n"
+        res += f"pan_oncc{ccnum + 1}=100\n"
+        res += f"pan_curvecc{ccnum + 1}=1\n"
         match len(self.controls):
-            case 0:
-                self.render_region(())
-            case 1:
-                for lev in level_ranges.keys():
-                    self.render_region((lev,))
             case 2:
+                res += self.render_region(())
+            case 3:
+                for lev in level_ranges.keys():
+                    res += self.render_region((lev,))
+            case 4:
                 for lev1 in level_ranges.keys():
                     for lev2 in level_ranges.keys():
                         # only dual-control instruments have tone controls
-                        self.render_region((lev1, lev2), keyswitch)
+                        res += self.render_region((lev1, lev2), keyswitch)
+        return res
 
     def render_control_labels(self):
+        res = ""
         cc = instrument_first_cc[self.abbr]
         for ctrl in self.controls:
-            print(f"label_cc{cc}={self.name} {ctrl.value} set_cc{cc}=64")
+            res += f"label_cc{cc}={self.name} {ctrl.value}\n"
+            res += f"set_cc{cc}=64\n"
             cc += 1
+        return res
 
     def render_comments(self):
-        print(f"# {self.note:3} {self.abbr} {self.name}", end="")
+        res = "# {self.note:3} {self.abbr} {self.name}"
         if len(self.controls) > 0:
-            print(f", controls:", end="")
+            res += f", controls:"
             for ctrl in self.controls:
-                print(f" {ctrl.value}", end="")
-        print()
+                res += f" {ctrl.value}"
+        return res + "\n"
 
+    def render_zynthian_yaml_controllers(self, ticks=True):
+        res = f" {self.name}:\n"
+        cc = instrument_first_cc[self.abbr]
+        for ctrl in self.controls:
+            res += f"  {self.abbr}_{ctrl.value.lower()}:\n"
+            res += f"    midi_cc: {cc}\n"
+            res += f"    name: {self.name} {ctrl.value}\n"
+            res += f"    value: {64}\n"
+            if ticks and ctrl not in (Control.LEVEL, Control.PAN):
+                res += f"    labels: {control_labels}\n"
+                res += f"    ticks: {control_ticks}\n"
+            cc += 1
+        return res + "\n"
+
+    def render_zynthian_yaml_keymap(self):
+        res = f" - note: {self.note_num}\n"
+        res += f"   name: {self.name}\n"
+        res += f"   colour: white\n"
+        return res
 
 instruments = (
-    Instrument(  "bd", "C1",  "bass drum", (Control.TONE, Control.DECAY,))
-    , Instrument("sd", "D1",  "snare drum", (Control.TONE, Control.SNAPPY,))
-    , Instrument("lt", "F1",  "low tom", (Control.TUNING,))
-    , Instrument("mt", "B1",  "medium tom", (Control.TUNING,))
-#   , Instrument("sd", "E1",  "+electric snare", (Control.TONE, Control.SNAPPY,))
-    , Instrument("ht", "C2",  "high tom", (Control.TUNING,))
-#   , Instrument("ht", "D2",  "+high tom", (Control.TUNING,))
-    , Instrument("lc", "D3",  "low conga", (Control.TUNING,))
-    , Instrument("mc", "Eb3", "medium conga", (Control.TUNING,))
-    , Instrument("hc", "E3",  "high conga", (Control.TUNING,))
-    , Instrument("cl", "Eb4", "clave", ())
-    , Instrument("rs", "Db1", "rimshot", ())
-    , Instrument("ma", "Bb3", "maracas", ())
-    , Instrument("cp", "Eb1", "hand clap", ())
-    , Instrument("cb", "Ab2", "cowbell", ())
-    , Instrument("cy", "Eb2", "cymbal", (Control.TONE, Control.DECAY,))
-#   , Instrument("cy", "B2",  "+cymbal", (Control.TONE, Control.DECAY,))
-    , Instrument("oh", "Bb1", "open hihat", (Control.DECAY,), group=1)
-    , Instrument("ch", "Gb1", "closed hihat", (), group=1)
+    Instrument(  "bd", "C2", 36, "BassDrum", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
+    , Instrument("rs", "Db2", 37, "Rimshot", (Control.LEVEL, Control.PAN, ))
+    , Instrument("sd", "D2",  38, "SnareDrum", (Control.LEVEL, Control.PAN, Control.TONE, Control.SNAPPY,))
+    , Instrument("cp", "Eb2", 39, "HandClap", (Control.LEVEL, Control.PAN, ))
+#   , Instrument("sd", "E2",  40, "+Elec.Snare", (Control.LEVEL, Control.PAN, Control.TONE, Control.SNAPPY,))
+    , Instrument("lt", "F2",  41, "LowTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("ch", "Gb2", 42, "Closed HiHat", (Control.LEVEL, Control.PAN, ), group=1)
+    , Instrument("oh", "Bb2", 46, "Open HiHat", (Control.LEVEL, Control.PAN, Control.DECAY,), group=1)
+    , Instrument("mt", "B2",  47, "MidTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("ht", "C3",  48, "HiTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
+#   , Instrument("ht", "D3",  50, "+HiTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("cy", "Eb3", 51, "Cymbal", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
+    , Instrument("cb", "Ab3", 56, "CowBell", (Control.LEVEL, Control.PAN, ))
+#   , Instrument("cy", "B3",  57, "+cymbal", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
+
+    , Instrument("lc", "D4", 62, "LowConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("mc", "Eb4", 63, "MidConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("hc", "E4", 64, "HiConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("ma", "Bb4", 70, "Maracas", (Control.LEVEL, Control.PAN, ))
+    , Instrument("cl", "Eb5", 75, "Clave", (Control.LEVEL, Control.PAN, ))
 )
 
-def main():
-    print(header)
+def generate():
+    filename = "TR808"
 
-    print("# Instrument note assignments (close to GM drum mapping)")
+    # Generate SFZ file
+    res = header
+    res += header_no_xfades
+    res += "\n# Instrument note assignments (close to GM drum mapping)\n"
     for inst in instruments:
         inst.render_comments()
-
-    print()
-    print("<control>")
+    res += "\n<control>\n"
     for inst in instruments:
-        txt = inst.render_control_labels()
-    print()
-    print("<master> sw_lokey=A0 sw_hikey=Bb0 sw_default=A0")
-
-    print()
-    print("<group> sw_last=A0")
+        res += inst.render_control_labels()
+    res += "\n<master> sw_lokey=Bb0 sw_hikey=Bb0 sw_default=Bb0\n"
     for inst in instruments:
-        txt = inst.render_sfz(keyswitch=True)
+        res += inst.render_sfz(keyswitch=False)
+    with open(filename + ".sfz", 'w') as fd:
+        fd.write(res)
+    #print(res)
 
-    print()
-    print("<group> sw_last=Bb0")
+    # Generate Zynthian Yaml file
+    res = header_zynthian_yaml
     for inst in instruments:
-        txt = inst.render_sfz(keyswitch=False)
+        res += inst.render_zynthian_yaml_controllers(ticks=True)
+    res += "\nkeymap:\n"
+    for inst in instruments:
+        res += inst.render_zynthian_yaml_keymap()
+    with open(filename + ".yml", 'w') as fd:
+        fd.write(res)
+    #print(res)
 
-main()
+def generate_xfades():
+    filename = "TR808_xfades"
+
+    # Generate SFZ file
+    res = header
+    res += header_keyswitches
+    res += "\n# Instrument note assignments (close to GM drum mapping)\n"
+    for inst in instruments:
+        inst.render_comments()
+    res += "\n<control>\n"
+    for inst in instruments:
+        res += inst.render_control_labels()
+    res += "\n<master> sw_lokey=A0 sw_hikey=Bb0 sw_default=A0\n"
+    for inst in instruments:
+        res += inst.render_sfz(keyswitch=True)
+    for inst in instruments:
+        res += inst.render_sfz(keyswitch=False)
+    with open(filename + ".sfz", 'w') as fd:
+        fd.write(res)
+    #print(res)
+
+    # Generate Zynthian Yaml file
+    res = header_zynthian_yaml_keyswitches
+    for inst in instruments:
+        res += inst.render_zynthian_yaml_controllers(ticks=False)
+    res += "\nkeymap:\n"
+    for inst in instruments:
+        res += inst.render_zynthian_yaml_keymap()
+    with open(filename + ".yml", 'w') as fd:
+        fd.write(res)
+    #print(res)
+
+
+generate()
+generate_xfades()

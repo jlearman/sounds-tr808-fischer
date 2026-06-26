@@ -91,12 +91,13 @@ class Instrument(object):
     name = ""
     controls = () # tuple of Control, at most two
 
-    def __init__(self, abbr:str, key:str, n:str, ctrls:list[Control], group:int=None):
+    def __init__(self, abbr:str, key:str, keynum:int, name:str, ctrls:list[Control], group:int=None):
         global instrument_first_cc
         global next_cc
         self.abbr = abbr
         self.note = key
-        self.name = n
+        self.note_num = keynum
+        self.name = name
         self.controls = ctrls
         self.ccs = {}
         self.group = group
@@ -219,45 +220,47 @@ class Instrument(object):
                 res += f" {ctrl.value}"
         return res + "\n"
 
-    def render_zynthian_yaml(self, ticks=True):
+    def render_zynthian_yaml_controllers(self, ticks=True):
         res = f" {self.name}:\n"
         cc = instrument_first_cc[self.abbr]
         for ctrl in self.controls:
-            res += self.render_zynthian_yaml_control(ctrl, cc, ticks)
+            res += f"  {self.abbr}_{ctrl.value.lower()}:\n"
+            res += f"    midi_cc: {cc}\n"
+            res += f"    name: {self.name} {ctrl.value}\n"
+            res += f"    value: {64}\n"
+            if ticks and ctrl not in (Control.LEVEL, Control.PAN):
+                res += f"    labels: {control_labels}\n"
+                res += f"    ticks: {control_ticks}\n"
             cc += 1
         return res + "\n"
 
-    def render_zynthian_yaml_control(self, ctrl, cc, ticks=True):
-        res = f"  {self.abbr}_{ctrl.value.lower()}:\n"
-        res += f"    midi_cc: {cc}\n"
-        res += f"    name: {self.name} {ctrl.value}\n"
-        res += f"    value: {64}\n"
-        if ticks and ctrl not in (Control.LEVEL, Control.PAN):
-            res += f"    labels: {control_labels}\n"
-            res += f"    ticks: {control_ticks}\n"
+    def render_zynthian_yaml_keymap(self):
+        res = f" - note: {self.note_num}\n"
+        res += f"   name: {self.name}\n"
+        res += f"   colour: white\n"
         return res
 
 instruments = (
-    Instrument(  "bd", "C1",  "BassDrum", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
-    , Instrument("rs", "Db1", "Rimshot", (Control.LEVEL, Control.PAN, ))
-    , Instrument("sd", "D1",  "SnareDrum", (Control.LEVEL, Control.PAN, Control.TONE, Control.SNAPPY,))
-    , Instrument("cp", "Eb1", "HandClap", (Control.LEVEL, Control.PAN, ))
-#   , Instrument("sd", "E1",  "+Elec.Snare", (Control.LEVEL, Control.PAN, Control.TONE, Control.SNAPPY,))
-    , Instrument("lt", "F1",  "LowTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
-    , Instrument("ch", "Gb1", "Closed HiHat", (Control.LEVEL, Control.PAN, ), group=1)
-    , Instrument("oh", "Bb1", "Open HiHat", (Control.LEVEL, Control.PAN, Control.DECAY,), group=1)
-    , Instrument("mt", "B1",  "MidTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
-    , Instrument("ht", "C2",  "HiTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
-#   , Instrument("ht", "D2",  "+HiTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
-    , Instrument("cy", "Eb2", "Cymbal", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
-    , Instrument("cb", "Ab2", "CowBell", (Control.LEVEL, Control.PAN, ))
-#   , Instrument("cy", "B2",  "+cymbal", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
+    Instrument(  "bd", "C2", 36, "BassDrum", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
+    , Instrument("rs", "Db2", 37, "Rimshot", (Control.LEVEL, Control.PAN, ))
+    , Instrument("sd", "D2",  38, "SnareDrum", (Control.LEVEL, Control.PAN, Control.TONE, Control.SNAPPY,))
+    , Instrument("cp", "Eb2", 39, "HandClap", (Control.LEVEL, Control.PAN, ))
+#   , Instrument("sd", "E2",  40, "+Elec.Snare", (Control.LEVEL, Control.PAN, Control.TONE, Control.SNAPPY,))
+    , Instrument("lt", "F2",  41, "LowTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("ch", "Gb2", 42, "Closed HiHat", (Control.LEVEL, Control.PAN, ), group=1)
+    , Instrument("oh", "Bb2", 46, "Open HiHat", (Control.LEVEL, Control.PAN, Control.DECAY,), group=1)
+    , Instrument("mt", "B2",  47, "MidTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("ht", "C3",  48, "HiTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
+#   , Instrument("ht", "D3",  50, "+HiTom", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("cy", "Eb3", 51, "Cymbal", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
+    , Instrument("cb", "Ab3", 56, "CowBell", (Control.LEVEL, Control.PAN, ))
+#   , Instrument("cy", "B3",  57, "+cymbal", (Control.LEVEL, Control.PAN, Control.TONE, Control.DECAY,))
 
-    , Instrument("lc", "D3",  "LowConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
-    , Instrument("mc", "Eb3", "MidConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
-    , Instrument("hc", "E3",  "HiConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
-    , Instrument("ma", "Bb3", "Maracas", (Control.LEVEL, Control.PAN, ))
-    , Instrument("cl", "Eb4", "Clave", (Control.LEVEL, Control.PAN, ))
+    , Instrument("lc", "D4", 62, "LowConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("mc", "Eb4", 63, "MidConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("hc", "E4", 64, "HiConga", (Control.LEVEL, Control.PAN, Control.TUNING,))
+    , Instrument("ma", "Bb4", 70, "Maracas", (Control.LEVEL, Control.PAN, ))
+    , Instrument("cl", "Eb5", 75, "Clave", (Control.LEVEL, Control.PAN, ))
 )
 
 def generate():
@@ -282,7 +285,10 @@ def generate():
     # Generate Zynthian Yaml file
     res = header_zynthian_yaml
     for inst in instruments:
-        res += inst.render_zynthian_yaml(ticks=True)
+        res += inst.render_zynthian_yaml_controllers(ticks=True)
+    res += "\nkeymap:\n"
+    for inst in instruments:
+        res += inst.render_zynthian_yaml_keymap()
     with open(filename + ".yml", 'w') as fd:
         fd.write(res)
     #print(res)
@@ -311,7 +317,10 @@ def generate_xfades():
     # Generate Zynthian Yaml file
     res = header_zynthian_yaml_keyswitches
     for inst in instruments:
-        res += inst.render_zynthian_yaml(ticks=False)
+        res += inst.render_zynthian_yaml_controllers(ticks=False)
+    res += "\nkeymap:\n"
+    for inst in instruments:
+        res += inst.render_zynthian_yaml_keymap()
     with open(filename + ".yml", 'w') as fd:
         fd.write(res)
     #print(res)

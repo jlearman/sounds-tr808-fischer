@@ -232,3 +232,53 @@ controllers:
     name: Clave Pan
     value: 64
 
+
+keymap:
+ - note: 36
+   name: BassDrum
+   colour: white
+ - note: 37
+   name: Rimshot
+   colour: white
+ - note: 38
+   name: SnareDrum
+   colour: white
+ - note: 39
+   name: HandClap
+   colour: white
+ - note: 41
+   name: LowTom
+   colour: white
+ - note: 42
+   name: Closed HiHat
+   colour: white
+ - note: 46
+   name: Open HiHat
+   colour: white
+ - note: 47
+   name: MidTom
+   colour: white
+ - note: 48
+   name: HiTom
+   colour: white
+ - note: 51
+   name: Cymbal
+   colour: white
+ - note: 56
+   name: CowBell
+   colour: white
+ - note: 62
+   name: LowConga
+   colour: white
+ - note: 63
+   name: MidConga
+   colour: white
+ - note: 64
+   name: HiConga
+   colour: white
+ - note: 70
+   name: Maracas
+   colour: white
+ - note: 75
+   name: Clave
+   colour: white

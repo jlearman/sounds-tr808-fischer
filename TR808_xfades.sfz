@@ -107,7 +107,7 @@ label_cc119=Clave Pan
 set_cc119=64
 
 <master> sw_lokey=A0 sw_hikey=Bb0 sw_default=A0
-<group> sw_last=A0 key=C1  loop_mode=one_shot
+<group> sw_last=A0 key=C2  loop_mode=one_shot
 volume=-24
 volume_oncc75=48
 pan_oncc76=100
@@ -137,13 +137,13 @@ pan_curvecc76=1
 <region> sample=bd8/BD1050.WAV locc77=112 hicc77=127 locc78=031 xfin_locc 78=031 xfin_hicc 78=079 xfout_locc 78=063 xfout_hicc 78=079 hicc078=079
 <region> sample=bd8/BD1075.WAV locc77=112 hicc77=127 locc78=063 xfin_locc 78=063 xfin_hicc 78=111 xfout_locc 78=095 xfout_hicc 78=111 hicc078=111
 <region> sample=bd8/BD1010.WAV locc77=112 hicc77=127 locc78=095 xfin_locc 78=095 xfin_hicc 78=127 hicc078=127
-<group> sw_last=A0 key=Db1 loop_mode=one_shot
+<group> sw_last=A0 key=Db2 loop_mode=one_shot
 volume=-24
 volume_oncc79=48
 pan_oncc80=100
 pan_curvecc80=1
 <region> sample=rs8/RS.WAV    
-<group> sw_last=A0 key=D1  loop_mode=one_shot
+<group> sw_last=A0 key=D2  loop_mode=one_shot
 volume=-24
 volume_oncc81=48
 pan_oncc82=100
@@ -173,13 +173,13 @@ pan_curvecc82=1
 <region> sample=sd8/SD1050.WAV locc83=112 hicc83=127 locc84=031 xfin_locc 84=031 xfin_hicc 84=079 xfout_locc 84=063 xfout_hicc 84=079 hicc084=079
 <region> sample=sd8/SD1075.WAV locc83=112 hicc83=127 locc84=063 xfin_locc 84=063 xfin_hicc 84=111 xfout_locc 84=095 xfout_hicc 84=111 hicc084=111
 <region> sample=sd8/SD1010.WAV locc83=112 hicc83=127 locc84=095 xfin_locc 84=095 xfin_hicc 84=127 hicc084=127
-<group> sw_last=A0 key=Eb1 loop_mode=one_shot
+<group> sw_last=A0 key=Eb2 loop_mode=one_shot
 volume=-24
 volume_oncc85=48
 pan_oncc86=100
 pan_curvecc86=1
 <region> sample=cp8/CP.WAV    
-<group> sw_last=A0 key=F1  loop_mode=one_shot
+<group> sw_last=A0 key=F2  loop_mode=one_shot
 volume=-24
 volume_oncc87=48
 pan_oncc88=100
@@ -189,13 +189,13 @@ pan_curvecc88=1
 <region> sample=lt8/LT50.WAV   locc89=048 hicc89=079
 <region> sample=lt8/LT75.WAV   locc89=080 hicc89=111
 <region> sample=lt8/LT10.WAV   locc89=112 hicc89=127
-<group> sw_last=A0 key=Gb1 loop_mode=one_shot
+<group> sw_last=A0 key=Gb2 loop_mode=one_shot
 volume=-24
 volume_oncc90=48
 pan_oncc91=100
 pan_curvecc91=1
 <region> sample=ch8/CH.WAV     group=1 off_by=1
-<group> sw_last=A0 key=Bb1 loop_mode=one_shot
+<group> sw_last=A0 key=Bb2 loop_mode=one_shot
 volume=-24
 volume_oncc92=48
 pan_oncc93=100
@@ -205,7 +205,7 @@ pan_curvecc93=1
 <region> sample=oh8/OH50.WAV   locc94=048 hicc94=079 group=1 off_by=1
 <region> sample=oh8/OH75.WAV   locc94=080 hicc94=111 group=1 off_by=1
 <region> sample=oh8/OH10.WAV   locc94=112 hicc94=127 group=1 off_by=1
-<group> sw_last=A0 key=B1  loop_mode=one_shot
+<group> sw_last=A0 key=B2  loop_mode=one_shot
 volume=-24
 volume_oncc95=48
 pan_oncc96=100
@@ -215,7 +215,7 @@ pan_curvecc96=1
 <region> sample=mt8/MT50.WAV   locc97=048 hicc97=079
 <region> sample=mt8/MT75.WAV   locc97=080 hicc97=111
 <region> sample=mt8/MT10.WAV   locc97=112 hicc97=127
-<group> sw_last=A0 key=C2  loop_mode=one_shot
+<group> sw_last=A0 key=C3  loop_mode=one_shot
 volume=-24
 volume_oncc98=48
 pan_oncc99=100
@@ -225,7 +225,7 @@ pan_curvecc99=1
 <region> sample=ht8/HT50.WAV   locc100=048 hicc100=079
 <region> sample=ht8/HT75.WAV   locc100=080 hicc100=111
 <region> sample=ht8/HT10.WAV   locc100=112 hicc100=127
-<group> sw_last=A0 key=Eb2 loop_mode=one_shot
+<group> sw_last=A0 key=Eb3 loop_mode=one_shot
 volume=-24
 volume_oncc101=48
 pan_oncc102=100
@@ -255,13 +255,13 @@ pan_curvecc102=1
 <region> sample=cy8/CY1050.WAV locc103=112 hicc103=127 locc104=031 xfin_locc104=031 xfin_hicc104=079 xfout_locc104=063 xfout_hicc104=079 hicc104=079
 <region> sample=cy8/CY1075.WAV locc103=112 hicc103=127 locc104=063 xfin_locc104=063 xfin_hicc104=111 xfout_locc104=095 xfout_hicc104=111 hicc104=111
 <region> sample=cy8/CY1010.WAV locc103=112 hicc103=127 locc104=095 xfin_locc104=095 xfin_hicc104=127 hicc104=127
-<group> sw_last=A0 key=Ab2 loop_mode=one_shot
+<group> sw_last=A0 key=Ab3 loop_mode=one_shot
 volume=-24
 volume_oncc105=48
 pan_oncc106=100
 pan_curvecc106=1
 <region> sample=cb8/CB.WAV    
-<group> sw_last=A0 key=D3  loop_mode=one_shot
+<group> sw_last=A0 key=D4  loop_mode=one_shot
 volume=-24
 volume_oncc107=48
 pan_oncc108=100
@@ -271,7 +271,7 @@ pan_curvecc108=1
 <region> sample=lc8/LC50.WAV   locc109=048 hicc109=079
 <region> sample=lc8/LC75.WAV   locc109=080 hicc109=111
 <region> sample=lc8/LC10.WAV   locc109=112 hicc109=127
-<group> sw_last=A0 key=Eb3 loop_mode=one_shot
+<group> sw_last=A0 key=Eb4 loop_mode=one_shot
 volume=-24
 volume_oncc110=48
 pan_oncc111=100
@@ -281,7 +281,7 @@ pan_curvecc111=1
 <region> sample=mc8/MC50.WAV   locc112=048 hicc112=079
 <region> sample=mc8/MC75.WAV   locc112=080 hicc112=111
 <region> sample=mc8/MC10.WAV   locc112=112 hicc112=127
-<group> sw_last=A0 key=E3  loop_mode=one_shot
+<group> sw_last=A0 key=E4  loop_mode=one_shot
 volume=-24
 volume_oncc113=48
 pan_oncc114=100
@@ -291,19 +291,19 @@ pan_curvecc114=1
 <region> sample=hc8/HC50.WAV   locc115=048 hicc115=079
 <region> sample=hc8/HC75.WAV   locc115=080 hicc115=111
 <region> sample=hc8/HC10.WAV   locc115=112 hicc115=127
-<group> sw_last=A0 key=Bb3 loop_mode=one_shot
+<group> sw_last=A0 key=Bb4 loop_mode=one_shot
 volume=-24
 volume_oncc116=48
 pan_oncc117=100
 pan_curvecc117=1
 <region> sample=ma8/MA.WAV    
-<group> sw_last=A0 key=Eb4 loop_mode=one_shot
+<group> sw_last=A0 key=Eb5 loop_mode=one_shot
 volume=-24
 volume_oncc118=48
 pan_oncc119=100
 pan_curvecc119=1
 <region> sample=cl8/CL.WAV    
-<group> sw_last=Bb0 key=C1  loop_mode=one_shot
+<group> sw_last=Bb0 key=C2  loop_mode=one_shot
 volume=-24
 volume_oncc75=48
 pan_oncc76=100
@@ -333,13 +333,13 @@ pan_curvecc76=1
 <region> sample=bd8/BD1050.WAV locc77=112 hicc77=127 locc78=048 hicc78=079
 <region> sample=bd8/BD1075.WAV locc77=112 hicc77=127 locc78=080 hicc78=111
 <region> sample=bd8/BD1010.WAV locc77=112 hicc77=127 locc78=112 hicc78=127
-<group> sw_last=Bb0 key=Db1 loop_mode=one_shot
+<group> sw_last=Bb0 key=Db2 loop_mode=one_shot
 volume=-24
 volume_oncc79=48
 pan_oncc80=100
 pan_curvecc80=1
 <region> sample=rs8/RS.WAV    
-<group> sw_last=Bb0 key=D1  loop_mode=one_shot
+<group> sw_last=Bb0 key=D2  loop_mode=one_shot
 volume=-24
 volume_oncc81=48
 pan_oncc82=100
@@ -369,13 +369,13 @@ pan_curvecc82=1
 <region> sample=sd8/SD1050.WAV locc83=112 hicc83=127 locc84=048 hicc84=079
 <region> sample=sd8/SD1075.WAV locc83=112 hicc83=127 locc84=080 hicc84=111
 <region> sample=sd8/SD1010.WAV locc83=112 hicc83=127 locc84=112 hicc84=127
-<group> sw_last=Bb0 key=Eb1 loop_mode=one_shot
+<group> sw_last=Bb0 key=Eb2 loop_mode=one_shot
 volume=-24
 volume_oncc85=48
 pan_oncc86=100
 pan_curvecc86=1
 <region> sample=cp8/CP.WAV    
-<group> sw_last=Bb0 key=F1  loop_mode=one_shot
+<group> sw_last=Bb0 key=F2  loop_mode=one_shot
 volume=-24
 volume_oncc87=48
 pan_oncc88=100
@@ -385,13 +385,13 @@ pan_curvecc88=1
 <region> sample=lt8/LT50.WAV   locc89=048 hicc89=079
 <region> sample=lt8/LT75.WAV   locc89=080 hicc89=111
 <region> sample=lt8/LT10.WAV   locc89=112 hicc89=127
-<group> sw_last=Bb0 key=Gb1 loop_mode=one_shot
+<group> sw_last=Bb0 key=Gb2 loop_mode=one_shot
 volume=-24
 volume_oncc90=48
 pan_oncc91=100
 pan_curvecc91=1
 <region> sample=ch8/CH.WAV     group=1 off_by=1
-<group> sw_last=Bb0 key=Bb1 loop_mode=one_shot
+<group> sw_last=Bb0 key=Bb2 loop_mode=one_shot
 volume=-24
 volume_oncc92=48
 pan_oncc93=100
@@ -401,7 +401,7 @@ pan_curvecc93=1
 <region> sample=oh8/OH50.WAV   locc94=048 hicc94=079 group=1 off_by=1
 <region> sample=oh8/OH75.WAV   locc94=080 hicc94=111 group=1 off_by=1
 <region> sample=oh8/OH10.WAV   locc94=112 hicc94=127 group=1 off_by=1
-<group> sw_last=Bb0 key=B1  loop_mode=one_shot
+<group> sw_last=Bb0 key=B2  loop_mode=one_shot
 volume=-24
 volume_oncc95=48
 pan_oncc96=100
@@ -411,7 +411,7 @@ pan_curvecc96=1
 <region> sample=mt8/MT50.WAV   locc97=048 hicc97=079
 <region> sample=mt8/MT75.WAV   locc97=080 hicc97=111
 <region> sample=mt8/MT10.WAV   locc97=112 hicc97=127
-<group> sw_last=Bb0 key=C2  loop_mode=one_shot
+<group> sw_last=Bb0 key=C3  loop_mode=one_shot
 volume=-24
 volume_oncc98=48
 pan_oncc99=100
@@ -421,7 +421,7 @@ pan_curvecc99=1
 <region> sample=ht8/HT50.WAV   locc100=048 hicc100=079
 <region> sample=ht8/HT75.WAV   locc100=080 hicc100=111
 <region> sample=ht8/HT10.WAV   locc100=112 hicc100=127
-<group> sw_last=Bb0 key=Eb2 loop_mode=one_shot
+<group> sw_last=Bb0 key=Eb3 loop_mode=one_shot
 volume=-24
 volume_oncc101=48
 pan_oncc102=100
@@ -451,13 +451,13 @@ pan_curvecc102=1
 <region> sample=cy8/CY1050.WAV locc103=112 hicc103=127 locc104=048 hicc104=079
 <region> sample=cy8/CY1075.WAV locc103=112 hicc103=127 locc104=080 hicc104=111
 <region> sample=cy8/CY1010.WAV locc103=112 hicc103=127 locc104=112 hicc104=127
-<group> sw_last=Bb0 key=Ab2 loop_mode=one_shot
+<group> sw_last=Bb0 key=Ab3 loop_mode=one_shot
 volume=-24
 volume_oncc105=48
 pan_oncc106=100
 pan_curvecc106=1
 <region> sample=cb8/CB.WAV    
-<group> sw_last=Bb0 key=D3  loop_mode=one_shot
+<group> sw_last=Bb0 key=D4  loop_mode=one_shot
 volume=-24
 volume_oncc107=48
 pan_oncc108=100
@@ -467,7 +467,7 @@ pan_curvecc108=1
 <region> sample=lc8/LC50.WAV   locc109=048 hicc109=079
 <region> sample=lc8/LC75.WAV   locc109=080 hicc109=111
 <region> sample=lc8/LC10.WAV   locc109=112 hicc109=127
-<group> sw_last=Bb0 key=Eb3 loop_mode=one_shot
+<group> sw_last=Bb0 key=Eb4 loop_mode=one_shot
 volume=-24
 volume_oncc110=48
 pan_oncc111=100
@@ -477,7 +477,7 @@ pan_curvecc111=1
 <region> sample=mc8/MC50.WAV   locc112=048 hicc112=079
 <region> sample=mc8/MC75.WAV   locc112=080 hicc112=111
 <region> sample=mc8/MC10.WAV   locc112=112 hicc112=127
-<group> sw_last=Bb0 key=E3  loop_mode=one_shot
+<group> sw_last=Bb0 key=E4  loop_mode=one_shot
 volume=-24
 volume_oncc113=48
 pan_oncc114=100
@@ -487,13 +487,13 @@ pan_curvecc114=1
 <region> sample=hc8/HC50.WAV   locc115=048 hicc115=079
 <region> sample=hc8/HC75.WAV   locc115=080 hicc115=111
 <region> sample=hc8/HC10.WAV   locc115=112 hicc115=127
-<group> sw_last=Bb0 key=Bb3 loop_mode=one_shot
+<group> sw_last=Bb0 key=Bb4 loop_mode=one_shot
 volume=-24
 volume_oncc116=48
 pan_oncc117=100
 pan_curvecc117=1
 <region> sample=ma8/MA.WAV    
-<group> sw_last=Bb0 key=Eb4 loop_mode=one_shot
+<group> sw_last=Bb0 key=Eb5 loop_mode=one_shot
 volume=-24
 volume_oncc118=48
 pan_oncc119=100

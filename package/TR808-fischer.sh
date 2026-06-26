@@ -1,16 +1,18 @@
 #!/bin/bash
 
 DST_DIR="$ZYNTHIAN_DATA_DIR/soundfonts/sfz/Drum Machines"
-DOWNLOAD_URL="https://github.com/zynthian/TR808-fischer/archive/refs/heads/main.zip"
+RELEASE="2606"
+DOWNLOAD_URL="https://github.com/zynthian/TR808-fischer/archive/refs/tags/$RELEASE.zip"
 DIRNAME="TR808-fischer"
 
 do_install() {
     set -ex
     mkdir -p "$DST_DIR"
-    cd $DST_DIR
+    cd "$DST_DIR"
     wget -q "$DOWNLOAD_URL"
-    unzip -q "main.zip"
-    rm -rf "main.zip"
+    unzip -q "$RELEASE.zip"
+    rm -f "$RELEASE.zip"
+    mv "$DIRNAME-$RELEASE" "$DIRNAME"
     rm -rf "$DIRNAME/package"
     set +x
     echo "installed"
@@ -18,7 +20,7 @@ do_install() {
 
 do_uninstall() {
     if [[ $(is_installed) == "installed" ]]; then
-        rm -rf "$DST_DIR"
+        rm -rf "$DST_DIR/$DIRNAME"
         echo "uninstalled"
     else
         echo "not installed"
